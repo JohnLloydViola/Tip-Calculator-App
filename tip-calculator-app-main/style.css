@@ -1,0 +1,55 @@
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+:root {
+  --grey-200: hsl(185, 41%, 84%);
+  --white: hsl(0, 100%, 100%);
+  --green: hsl(172, 67%, 45%);
+}
+
+body {
+  background-color: var(--grey-200);
+  font-family: "SpaceMono", sans-serif;
+}
+
+@font-face {
+  src: url("font/SpaceMono-Regular.ttf");
+  font-family: "SpaceMono" ;
+}
+
+main {
+  background-color: var(--white);
+  width: 60%;
+  margin: 150px auto;
+  padding: 25px;
+  display:flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+/* bill-container */
+.bill-container {
+  width: 50%;
+  border: 1px solid black;
+}
+
+.bill,
+.number-people {
+  display:flex;
+  flex-direction: column;
+}
+
+.tip-percentage {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* result-container */
+.result-container {
+  width: 50%;
+  border: 1px solid black;
+}
+
