@@ -5,12 +5,13 @@
 }
 
 :root {
+  --green-900: hsl(183, 100%, 15%);
+  --green-400: hsl(172, 67%, 45%);
+  --grey-500: hsl(186, 14%, 43%);
   --grey-400: hsl(184, 14%, 56%);
   --grey-200: hsl(185, 41%, 84%);
   --grey-50: hsl(189, 47%, 97%);
   --white: hsl(0, 100%, 100%);
-  --green-400: hsl(172, 67%, 45%);
-  --green-900: hsl(183, 100%, 15%);
   --border-radius-default: 20px;
 
 }
@@ -27,12 +28,12 @@ body {
 
 main {
   background-color: var(--white);
-  width: 50%;
+  width: 45%;
   margin: 150px auto;
   padding: 2.188rem;
   display:flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 2.3rem;
   border-radius: var(--border-radius-default);
  
 }
@@ -41,10 +42,15 @@ main {
 .bill-container {
   width: 50%;
   padding: 10px 0;
+  font-size: 13px;
+  font-weight:bold;
 }
 
 
-
+.number-people {
+  font-weight:bold;
+  font-size: 13px;
+}
 .bill,
 .number-people {
   display:flex;
@@ -53,14 +59,18 @@ main {
 
 .bill > label, .number-people > label  {
   padding-bottom: 5px;
+  color:var(--grey-400);
 }
 
 .tip {
-  padding:40px 0;
+  padding:35px 0;
 }
 
 .tip > p {
   padding-bottom: 10px;
+  font-size: 13px;
+  font-weight:bold;
+   color:var(--grey-400);
 }
 
 .tip-percentage {
@@ -70,12 +80,13 @@ main {
 }
 
 .tip-percentage button {
-  padding: 10px 0;
+  padding: 7px 0;
   background-color: var(--green-900);
   color: var(--grey-50);
-  font-weight: bold;
   border:none;
   border-radius: 6px;
+  font-size:18px;
+  font-family: "SpaceMono",sans-serif;
 }
 .tip-percentage button:last-of-type {
   background-color:transparent;
@@ -84,11 +95,13 @@ main {
 }
 
 #bill-input, #people-input {
-  padding: 10px 0;
+  padding: 5px;
   background-color: var(--grey-50);
   border:none;
   border-radius: 6px;
-  
+  text-align: right;
+  font-size: 20px;
+  font-family: "SpaceMono", sans-serif;
 }
 
 /* result-container */
@@ -109,6 +122,17 @@ main {
 .tip-amount:not(:first-child),
 .total-amount:not(:first-child) {
   padding-top: 30px;
+  
+}
+
+.person {
+  color: var(--grey-400);
+}
+
+.tip-amount > div:first-child,
+.total-amount > div:first-child {
+  font-size: 13px;
+  font-weight:bold;
 }
 
 .total-amount {
