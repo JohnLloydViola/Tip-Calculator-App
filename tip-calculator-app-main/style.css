@@ -133,7 +133,8 @@ main {
 }
 
 .activeBtn {
-  background-color: var(--green-400);
+  background-color: var(--green-400) !important;
+  color:red;
 }
 
 #custom-btn {

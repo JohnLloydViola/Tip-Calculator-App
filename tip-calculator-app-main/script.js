@@ -1,19 +1,21 @@
 let buttonVal = document.querySelectorAll('.btnVal');
 let tipAmount = undefined;
+let totalAmount = undefined;
 
 getBtnValues(buttonVal);
 
 function getBtnValues(button) {
-
+  
   button.forEach(buttons => {
     buttons.addEventListener('click', () =>{
+      removeActiveBtn(button);
+      buttons.classList.add('activeBtn');
+
       let buttonVal = buttons.getAttribute('data-percentage-value');
       let billInputStr = document.getElementById('bill-input').value.trim();
       let numberPeopleInStr = document.getElementById('people-input').value.trim();
        console.log(billInputStr);
       inputValidation(billInputStr, numberPeopleInStr, buttonVal);
-
-      
     });
     
   });
@@ -64,7 +66,13 @@ function calculateValues(billInput, numberInput, buttonVal) {
   tipAmount = ((( billInput * buttonVal) / 100) + billInput) / numberInput;
   document.getElementById('total-value').innerText = tipAmount.toFixed(2);
     
+  
+}
 
+function removeActiveBtn(buttons) {
+buttons.forEach( button => {
+  button.classList.remove('activeBtn');
+})
 }
 
 
