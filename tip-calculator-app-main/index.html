@@ -14,7 +14,11 @@
   <main>
     <div class="bill-container">
       <div class="bill">
-        <label for="bill-input">Bill</label>
+        <div>
+           <label for="bill-input">Bill</label>
+            <p class="error-msg"></p>
+        </div>
+       
         <div>
         <input type="text" id="bill-input" placeholder="0">
         <img src="images/icon-dollar.svg" alt="dollar icon">
@@ -24,18 +28,24 @@
       <div class="tip">
         <p>Select Tip %</p>
         <div class="tip-percentage">
-          <button> 5%</button>
-          <button> 10%</button>
-          <button> 15%</button>
-          <button> 25%</button>
-          <button> 50%</button>
+          <button class= "btnVal" data-percentage-value="5"> 5%</button>
+          <button class= "btnVal" data-percentage-value="10"> 10%</button>
+          <button class= "btnVal" data-percentage-value="15"> 15%</button>
+          <button class= "btnVal" data-percentage-value="25"> 25%</button>
+          <button class= "btnVal"data-percentage-value="50"> 50%</button>
           <input type="text" id="custom-btn" placeholder="Custom"></input>
           
         </div>
       </div>
 
       <div class="number-people">
-        <label for="">Number of People</label>
+
+        <div>
+           <label for="">Number of People</label>
+           <p class="error-msg"></p>
+
+        </div>
+       
         <div>
            <input type="text" id="people-input" placeholder="0">
            <img src="images/icon-person.svg" alt="person-icon">
@@ -53,7 +63,7 @@
           <p class="person">/ person</p>
         </div>
         <div>
-          <p class="tip-value">&dollar;0.00</p>
+          <p id="tip-value">&dollar;0.00</p>
         </div>
       </div>
 
@@ -63,7 +73,7 @@
           <p class="person">/ person</p>
         </div>
         <div>
-          <p class="total-value">&dollar;0.00</p>
+          <p id="total-value">&dollar;0.00</p>
         </div>
       </div>
 
@@ -73,6 +83,9 @@
     
   </main>
   
-  <script src="script.js"></script>
+  <script src="script.js">
+    
+
+  </script>
 </body>
 </html>

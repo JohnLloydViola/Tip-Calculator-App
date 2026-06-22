@@ -70,6 +70,13 @@ main {
   width: 100%;
   position: relative;
 }
+
+.bill div > div {
+  display:flex;
+}
+
+
+
 .bill img, .number-people img {
   position:absolute;
   left:15px;
@@ -77,11 +84,24 @@ main {
 
 }
 
-.bill > label, .number-people > label  {
+.bill div:first-child,
+.number-people div:first-child {
+  display:flex;
+  justify-content: space-between;
+
+}
+
+.bill div:first-child label, 
+.error-msg, 
+.number-people div:first-child label  {
   padding-bottom: 5px;
+  display:block;
   color:var(--grey-400);
 }
 
+.error-msg {
+  display:none;
+}
 .tip {
   padding:35px 0;
 }
@@ -175,8 +195,8 @@ main {
   padding-bottom: 120px;
 }
 
-.tip-value,
-.total-value {
+#tip-value,
+#total-value {
   font-size:xx-large;
   color: var(--green-400);
   font-weight:bolder;
