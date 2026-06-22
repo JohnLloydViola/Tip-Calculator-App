@@ -1,18 +1,32 @@
 let buttonVal = document.querySelectorAll('.btnVal');
 let inputVal = document.getElementById('custom-btn');
+let resetBtn = document.querySelector('.reset-btn');
+
+
 let tipAmount = undefined;
 let totalAmount = undefined;
+resetBtn.disabled = true;
 
+inputVal.addEventListener('click', () => {
+  removeActiveBtn(buttonVal);
+});
+
+resetBtn.addEventListener('click', () => {
+  document.getElementById('bill-input').value = "";
+  document.getElementById('people-input').value = "";
+  document.getElementById('custom-btn').value = "";
+  document.getElementById('tip-value').innerHTML = "&#36;0.00";
+  document.getElementById('total-value').innerHTML = "&#36;0.00";
+  removeActiveBtn(buttonVal);
+  resetBtn.classList.remove('reset-active');
+  resetBtn.disabled = true;
+  
+});
 
 getBtnValues(buttonVal);
+
 function getBtnValues(button) {
-  
   button.forEach(buttons => {
-
-    inputVal.addEventListener('click', () => {
-      buttons.classList.remove('activeBtn');
-    })
-
     buttons.addEventListener('click', () =>{
       removeActiveBtn(button);
       buttons.classList.add('activeBtn');
@@ -69,18 +83,21 @@ function inputValidation(billInput, numberInput, buttonVal) {
 
 
 function calculateValues(billInput, numberInput, buttonVal) {
-  tipAmount = ((billInput * buttonVal) / 100) / 5
+  tipAmount = ((billInput * buttonVal) / 100) / numberInput;
   document.getElementById('tip-value').innerText = '$'+ tipAmount.toFixed(2);
   totalAmount = ((( billInput * buttonVal) / 100) + billInput) / numberInput;
   document.getElementById('total-value').innerText = '$'+totalAmount.toFixed(2);
-
+  resetBtn.disabled = false;
+  resetBtn.classList.add('reset-active');
 }
+
 
 function removeActiveBtn(buttons) {
-buttons.forEach( button => {
- 
-  button.classList.remove('activeBtn');
-})
+  buttons.forEach( button => {
+    button.classList.remove('activeBtn');
+  });
 }
+
+
 
 

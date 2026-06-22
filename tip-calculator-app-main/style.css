@@ -209,7 +209,7 @@ main {
   font-weight:bolder;
 }
 
-.reset-Btn {
+.reset-btn {
   width:100%;
   background-color: hsl(183, 79%, 24%);
   color:var(--green-900);
@@ -217,6 +217,13 @@ main {
   padding: 10px 0;
   border-radius: 6px;
   cursor: not-allowed;
+  font-weight:bold;
+}
+
+.reset-active {
+  background-color:var(--green-400) !important;
+  color: var(--green-900)!important;
+  cursor: pointer !important;
 }
 
 /* Animation stuff, pseudo etc, */
