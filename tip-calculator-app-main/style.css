@@ -132,6 +132,10 @@ main {
   font-weight: bold;
 }
 
+.activeBtn {
+  background-color: var(--green-400);
+}
+
 #custom-btn {
   padding: 7px 0;
   background-color: var(--grey-50);
