@@ -92,15 +92,17 @@ main {
 }
 
 .bill div:first-child label, 
-.error-msg, 
+#bill-error-msg, 
+#number-error-msg,
 .number-people div:first-child label  {
   padding-bottom: 5px;
   display:block;
   color:var(--grey-400);
 }
 
-.error-msg {
-  display:none;
+#bill-error-msg,
+#number-error-msg {
+  display: none;
 }
 .tip {
   padding:35px 0;
