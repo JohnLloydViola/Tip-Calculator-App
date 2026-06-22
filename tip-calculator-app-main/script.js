@@ -1,12 +1,18 @@
 let buttonVal = document.querySelectorAll('.btnVal');
+let inputVal = document.getElementById('custom-btn');
 let tipAmount = undefined;
 let totalAmount = undefined;
 
-getBtnValues(buttonVal);
 
+getBtnValues(buttonVal);
 function getBtnValues(button) {
   
   button.forEach(buttons => {
+
+    inputVal.addEventListener('click', () => {
+      buttons.classList.remove('activeBtn');
+    })
+
     buttons.addEventListener('click', () =>{
       removeActiveBtn(button);
       buttons.classList.add('activeBtn');
@@ -63,14 +69,16 @@ function inputValidation(billInput, numberInput, buttonVal) {
 
 
 function calculateValues(billInput, numberInput, buttonVal) {
-  tipAmount = ((( billInput * buttonVal) / 100) + billInput) / numberInput;
-  document.getElementById('total-value').innerText = tipAmount.toFixed(2);
-    
-  
+  tipAmount = ((billInput * buttonVal) / 100) / 5
+  document.getElementById('tip-value').innerText = '$'+ tipAmount.toFixed(2);
+  totalAmount = ((( billInput * buttonVal) / 100) + billInput) / numberInput;
+  document.getElementById('total-value').innerText = '$'+totalAmount.toFixed(2);
+
 }
 
 function removeActiveBtn(buttons) {
 buttons.forEach( button => {
+ 
   button.classList.remove('activeBtn');
 })
 }
