@@ -100,6 +100,12 @@ main {
   color:var(--grey-400);
 }
 
+#custom-error-msg {
+  display:block;
+  color:var(--grey-400);
+  position:absolute;
+}
+
 #bill-error-msg,
 #number-error-msg {
   display: none;
