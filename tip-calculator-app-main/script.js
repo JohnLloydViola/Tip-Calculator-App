@@ -17,22 +17,25 @@ inputVal.addEventListener("input", () => {
   let customErrorMsg = document.getElementById('custom-error-msg');
 
   if (isNaN(input)) {
-    document.getElementById('custom-error-msg').innerText = 'Numbers Only';
-    document.getElementById('custom-error-msg').style.color = 'red';
+    customErrorMsg.innerText = 'Numbers Only';
+    customErrorMsg.style.color = 'red';
+    customErrorMsg.style.display = 'block';
     return;
   }else if(input == 0) {
-    document.getElementById('custom-error-msg').innerText = "Can't be zero";
-    document.getElementById('custom-error-msg').style.color = 'red';
+    customErrorMsg.innerText = "Can't be zero";
+    customErrorMsg.style.color = 'red';
+    customErrorMsg.style.display = 'block';
     return;
 
   }
   else if(input < 0) {
-    document.getElementById('custom-error-msg').innerText = "Can't be negative ";
-    document.getElementById('custom-error-msg').style.color = 'red';
+    customErrorMsg.innerText = "Can't be negative ";
+    customErrorMsg.style.color = 'red';
+    customErrorMsg.style.display = 'block';
     return;
   }
   if(!isNaN(input)) {
-    document.getElementById('custom-error-msg').innerText = ''
+    customErrorMsg.innerText = '';
   }
   inputValidation(billInputStr, numberPeopleInStr, Number(input));
 });
@@ -141,8 +144,11 @@ function clearEverything () {
   document.getElementById('tip-value').innerHTML = "&#36;0.00";
   document.getElementById('total-value').innerHTML = "&#36;0.00";
   document.getElementById('bill-error-msg').innerText ='';
+  document.getElementById('bill-error-msg').style.display ='none';
   document.getElementById('number-error-msg').innerText ='';
+  document.getElementById('number-error-msg').style.display ='none';
   document.getElementById('custom-error-msg').innerText = '';
+  document.getElementById('custom-error-msg').style.display = 'none';
 }
 
 
