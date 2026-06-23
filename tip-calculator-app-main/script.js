@@ -11,8 +11,8 @@ inputVal.addEventListener('click', () => {
 });
 
 inputVal.addEventListener("input", () => { 
-  let billInputStr = document.getElementById('bill-input').value.trim();
-  let numberPeopleInStr = document.getElementById('people-input').value.trim();
+  let billInputStr = Number(document.getElementById('bill-input').value.trim());
+  let numberPeopleInStr = Number(document.getElementById('people-input').value.trim());
   let input = Number(document.getElementById('custom-btn').value.trim());
   let customErrorMsg = document.getElementById('custom-error-msg');
 
@@ -20,7 +20,13 @@ inputVal.addEventListener("input", () => {
     document.getElementById('custom-error-msg').innerText = 'Numbers Only';
     document.getElementById('custom-error-msg').style.color = 'red';
     return;
-  }else if(input < 0) {
+  }else if(input == 0) {
+    document.getElementById('custom-error-msg').innerText = "Can't be zero";
+    document.getElementById('custom-error-msg').style.color = 'red';
+    return;
+
+  }
+  else if(input < 0) {
     document.getElementById('custom-error-msg').innerText = "Can't be negative ";
     document.getElementById('custom-error-msg').style.color = 'red';
     return;
@@ -33,13 +39,7 @@ inputVal.addEventListener("input", () => {
 
 
 resetBtn.addEventListener('click', () => {
-  document.getElementById('bill-input').value = "";
-  document.getElementById('people-input').value = "";
-  document.getElementById('custom-btn').value = "";
-  document.getElementById('tip-value').innerHTML = "&#36;0.00";
-  document.getElementById('total-value').innerHTML = "&#36;0.00";
-  document.getElementById('bill-error-msg').innerText ='';
-  document.getElementById('number-error-msg').innerText ='';
+  clearEverything();
   removeActiveBtn(buttonVal);
   resetBtn.classList.remove('reset-active');
   resetBtn.disabled = true;
@@ -57,7 +57,7 @@ function getBtnValues(button) {
       document.getElementById('custom-btn').value = '';
       
 
-      let buttonVal = buttons.getAttribute('data-percentage-value');
+      let buttonVal = Number(buttons.getAttribute('data-percentage-value'));
       let billInputStr = Number(document.getElementById('bill-input').value.trim());
       let numberPeopleInStr = Number(document.getElementById('people-input').value.trim());
 
@@ -98,6 +98,7 @@ function inputValidation(billInput, numberInput, buttonVal) {
     numberErrorMsg.innerText = "Can't be negative";
     numberErrorMsg.style.color = 'red';
     numberErrorMsg.style.display = 'block'
+    return;
 
   }else if (isNaN(numberInput)) {
     numberErrorMsg.innerText = "Numbers Only";
@@ -133,6 +134,16 @@ function removeActiveBtn(buttons) {
   });
 }
 
+function clearEverything () {
+  document.getElementById('bill-input').value = "";
+  document.getElementById('people-input').value = "";
+  document.getElementById('custom-btn').value = "";
+  document.getElementById('tip-value').innerHTML = "&#36;0.00";
+  document.getElementById('total-value').innerHTML = "&#36;0.00";
+  document.getElementById('bill-error-msg').innerText ='';
+  document.getElementById('number-error-msg').innerText ='';
+  document.getElementById('custom-error-msg').innerText = '';
+}
 
 
 
