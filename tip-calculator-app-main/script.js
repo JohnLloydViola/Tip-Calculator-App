@@ -1,140 +1,134 @@
 let buttonVal = document.querySelectorAll('.btnVal');
 let inputVal = document.getElementById('custom-btn');
 let resetBtn = document.querySelector('.reset-btn');
-
-let tipAmount = undefined;
-let totalAmount = undefined;
 resetBtn.disabled = true;
 
-inputVal.addEventListener('click', () => {
+inputVal.addEventListener('input', () => {
   removeActiveBtn(buttonVal);
 });
 
 inputVal.addEventListener("input", () => { 
-  let billInputStr = Number(document.getElementById('bill-input').value.trim());
-  let numberPeopleInStr = Number(document.getElementById('people-input').value.trim());
-  let input = Number(document.getElementById('custom-btn').value.trim());
+  let billInputStr = document.getElementById('bill-input').value.trim();
+  let numberPeopleInStr = document.getElementById('people-input').value.trim();
+  let inputStr = document.getElementById('custom-btn').value.trim();
+  let customInput = Number(inputStr);
   let customErrorMsg = document.getElementById('custom-error-msg');
 
-  if (isNaN(input)) {
-    customErrorMsg.innerText = 'Numbers Only';
-    customErrorMsg.style.color = 'red';
-    customErrorMsg.style.display = 'block';
+  if (inputStr === "") {
+    showError(customErrorMsg ,"Can't Be Empty");
     return;
-  }else if(input == 0) {
-    customErrorMsg.innerText = "Can't be zero";
-    customErrorMsg.style.color = 'red';
-    customErrorMsg.style.display = 'block';
+  }else if (isNaN(customInput)) {
+    showError(customErrorMsg, 'Numbers Only');
     return;
+  }else if(customInput === 0) {
+    showError(customErrorMsg,"Can't be zero" );
+    return;
+  }
+  else if(customInput < 0) {
+    showError(customErrorMsg, "Can't be negative");
+    return;
+  }else if(customInput > 100) {
+    showError(customErrorMsg, "Less Than 100");
+    return;
+  }
 
-  }
-  else if(input < 0) {
-    customErrorMsg.innerText = "Can't be negative ";
-    customErrorMsg.style.color = 'red';
-    customErrorMsg.style.display = 'block';
-    return;
-  }
-  if(!isNaN(input)) {
-    customErrorMsg.innerText = '';
-  }
-  inputValidation(billInputStr, numberPeopleInStr, Number(input));
+  customErrorMsg.textContent = '';
+  customErrorMsg.style.display = 'none';
+  inputValidation(billInputStr, numberPeopleInStr, customInput);
 });
-
 
 resetBtn.addEventListener('click', () => {
   clearEverything();
   removeActiveBtn(buttonVal);
   resetBtn.classList.remove('reset-active');
   resetBtn.disabled = true;
-  
 });
 
 getBtnValues(buttonVal);
-
 function getBtnValues(button) {
   button.forEach(buttons => {
     buttons.addEventListener('click', () =>{
       removeActiveBtn(button);
       buttons.classList.add('activeBtn');
-      document.getElementById('custom-error-msg').innerText = '';
+
+      document.getElementById('custom-error-msg').textContent = '';
+      document.getElementById('custom-error-msg').style.display = 'none';
       document.getElementById('custom-btn').value = '';
-      
 
-      let buttonVal = Number(buttons.getAttribute('data-percentage-value'));
-      let billInputStr = Number(document.getElementById('bill-input').value.trim());
-      let numberPeopleInStr = Number(document.getElementById('people-input').value.trim());
+      let percentageVal = Number(buttons.getAttribute('data-percentage-value'));
+      let billInputStr = document.getElementById('bill-input').value.trim();
+      let numberPeopleInStr = document.getElementById('people-input').value.trim();
 
-      inputValidation(billInputStr, numberPeopleInStr, buttonVal);
+      inputValidation(billInputStr, numberPeopleInStr, percentageVal);
     });
   });
 }
 
-function inputValidation(billInput, numberInput, buttonVal) {
+function inputValidation(billInputStr, numberInputStr, buttonVal) {
   let billErrorMsg = document.getElementById('bill-error-msg');
   let numberErrorMsg = document.getElementById('number-error-msg');
+  let billInput = Number(billInputStr);
+  let numberInput = Number(numberInputStr);
 
-  if(billInput == '' || billInput == '0') {
-    billErrorMsg.innerText = "Can't be zero";
-    billErrorMsg.style.color = 'red';
-    billErrorMsg.style.display = 'block';
+  if(billInputStr === '') {
+    showError(billErrorMsg, "Can't Be Empty");
     return;
+  }else if(billInput === 0) {
+    showError(billErrorMsg, "Can't Be Zero");
+    return;
+
   }else if (billInput < 0) {
-    billErrorMsg.innerText = "Can't be negative";
-    billErrorMsg.style.color = 'red';
-    billErrorMsg.style.display = 'block'
+    showError(billErrorMsg, "Can't be negative");
     return;
   }else if (isNaN(billInput)) {
-    billErrorMsg.innerText = "Numbers Only";
-    billErrorMsg.style.color = 'red';
-    billErrorMsg.style.display = 'block';
+    showError(billErrorMsg, "Numbers Only");
     return;
   }else {
+    billErrorMsg.textContent = '';
     billErrorMsg.style.display = 'none';
   }
 
-  if (numberInput == '' ||numberInput == '0') {
-    numberErrorMsg.innerText = "Can't be zero";
-    numberErrorMsg.style.color = 'red';
-    numberErrorMsg.style.display = 'block';
+  if (numberInputStr === '') {
+    showError(numberErrorMsg, "Can't Be Empty");
+    return;
+  }else if(numberInput === 0) {
+    showError(numberErrorMsg, "Can't Be Zero");
     return;
   }else if(numberInput < 0) {
-    numberErrorMsg.innerText = "Can't be negative";
-    numberErrorMsg.style.color = 'red';
-    numberErrorMsg.style.display = 'block'
+    showError(numberErrorMsg, "Can't be negative");
     return;
 
   }else if (isNaN(numberInput)) {
-    numberErrorMsg.innerText = "Numbers Only";
-    numberErrorMsg.style.color = 'red';
-    numberErrorMsg.style.display = 'block';
+    showError(numberErrorMsg, "Numbers Only");
     return;
   }
   else {
+    numberErrorMsg.textContent = '';
     numberErrorMsg.style.display = 'none';
   }
-
-  let billInputVal = parseFloat(billInput);
-  let numberPeopleInVal = Number(numberInput);
-
-  calculateValues(billInputVal, numberPeopleInVal, buttonVal);
-
+  calculateValues(billInput, numberInput, buttonVal);
 }
 
 
 function calculateValues(billInput, numberInput, buttonVal) {
-  tipAmount = ((billInput * buttonVal) / 100) / numberInput;
-  document.getElementById('tip-value').innerText = '$'+ tipAmount.toFixed(2);
-  totalAmount = ((( billInput * buttonVal) / 100) + billInput) / numberInput;
-  document.getElementById('total-value').innerText = '$'+totalAmount.toFixed(2);
+  const tipAmount = ((billInput * buttonVal) / 100) / numberInput;
+  document.getElementById('tip-value').textContent = '$'+ tipAmount.toFixed(2);
+  const totalAmount = ((( billInput * buttonVal) / 100) + billInput) / numberInput;
+  document.getElementById('total-value').textContent = '$'+totalAmount.toFixed(2);
   resetBtn.disabled = false;
   resetBtn.classList.add('reset-active');
 }
-
 
 function removeActiveBtn(buttons) {
   buttons.forEach( button => {
     button.classList.remove('activeBtn');
   });
+}
+
+function showError(element, message) {
+  element.textContent = message;
+  element.style.color = 'red';
+  element.style.display = 'block';
 }
 
 function clearEverything () {
@@ -143,11 +137,11 @@ function clearEverything () {
   document.getElementById('custom-btn').value = "";
   document.getElementById('tip-value').innerHTML = "&#36;0.00";
   document.getElementById('total-value').innerHTML = "&#36;0.00";
-  document.getElementById('bill-error-msg').innerText ='';
+  document.getElementById('bill-error-msg').textContent ='';
   document.getElementById('bill-error-msg').style.display ='none';
-  document.getElementById('number-error-msg').innerText ='';
+  document.getElementById('number-error-msg').textContent ='';
   document.getElementById('number-error-msg').style.display ='none';
-  document.getElementById('custom-error-msg').innerText = '';
+  document.getElementById('custom-error-msg').textContent = '';
   document.getElementById('custom-error-msg').style.display = 'none';
 }
 
