@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+
 :root {
   --green-900: hsl(183, 100%, 15%);
   --green-400: hsl(172, 67%, 45%);
@@ -99,7 +100,7 @@ main {
 }
 
 #custom-error-msg {
-  display:none;
+  display:block;
   color:var(--grey-400);
   position:absolute;
 }
@@ -138,7 +139,6 @@ main {
 
 .activeBtn {
   background-color: var(--green-400) !important;
-  color:red;
 }
 
 #custom-btn {
@@ -207,9 +207,8 @@ main {
 
 #tip-value,
 #total-value {
-  font-size:xx-large;
+  font-size:2.375rem;
   color: var(--green-400);
-  
 }
 
 .reset-btn {
@@ -229,6 +228,7 @@ main {
   cursor: pointer !important;
 }
 
+
 /* Animation stuff, pseudo etc, */
 .tip-percentage button:hover {
   cursor:pointer;
@@ -236,14 +236,12 @@ main {
   color: var(--green-900);
 }
 
-
 #bill-input:focus,
 #people-input:focus,
 #custom-btn:focus{
   outline:none;
   border: 0.125rem solid var(--green-400);
 }
-
 
 #bill-input:hover,
 #people-input:hover,
@@ -258,3 +256,94 @@ main {
   color: var(--green-900);
 }
 
+
+/* Responsiveness */
+@media (max-width: 1440px) {
+  html {
+    font-size: 15px;
+  }
+
+  main {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1066px) {
+  html {
+    font-size: 14px;
+  }
+
+  main {
+    width: 75%;
+  }
+}
+
+@media (max-width: 886px) {
+  html {
+    font-size: 13px;
+  }
+
+  main {
+    width: 95%;
+  }
+}
+
+@media (max-width: 710px) {
+  html {
+    font-size: 12px;
+  }
+
+  main {
+    width: 95%;
+    padding: 1.188rem;
+    gap: 1rem;
+  }
+
+  .total-amount {
+    padding-bottom: 5.9rem;
+  }
+
+  .bill img,
+  .number-people img {
+    top: 0.513rem;
+  }
+}
+
+@media (max-width: 566px) {
+  html {
+    font-size: 11px;
+  }
+
+  .result-container {
+    padding: 1.188rem;
+  }
+
+  .reset-btn {
+    padding: 0.325rem 0;
+  }
+
+  .bill img,
+  .number-people img {
+    top: 0.413rem;
+  }
+
+  .total-amount {
+    padding-bottom: 7.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 11px;
+  }
+
+  main {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .bill-container,
+  .result-container {
+    width: 100%;
+  }
+}
