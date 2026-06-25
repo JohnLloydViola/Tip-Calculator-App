@@ -145,5 +145,3 @@ function clearEverything () {
   document.getElementById('custom-error-msg').style.display = 'none';
 }
 
-
-

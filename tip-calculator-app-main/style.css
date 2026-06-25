@@ -134,6 +134,9 @@ main {
   font-size:1.125rem;
   font-family: "SpaceMono",sans-serif;
   font-weight:bold;
+  transition-property: color, background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 
 }
 
@@ -153,6 +156,9 @@ main {
   text-align: center;
   width:100%;
   height: 100%;
+  transition-property: border;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
   
 }
 
@@ -169,6 +175,9 @@ main {
   width:100%;
   border: 0.125rem solid transparent;
   color: var(--green-900);
+  transition-property: border;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 }
 
 /* result-container */
@@ -220,6 +229,9 @@ main {
   border-radius: 0.375rem;
   cursor: not-allowed;
   font-weight:bold;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 }
 
 .reset-active {
@@ -254,6 +266,10 @@ main {
 #people-input::placeholder,
 #custom-btn::placeholder {
   color: var(--green-900);
+}
+
+.reset-btn.reset-active:hover {
+  color:var(--white) !important;
 }
 
 
