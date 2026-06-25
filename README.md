@@ -1,1 +1,1 @@
-Under Construction for now.
+A responsive tip calculator that instantly calculates the tip amount and total cost per person based on the bill, tip percentage, and number of people.
