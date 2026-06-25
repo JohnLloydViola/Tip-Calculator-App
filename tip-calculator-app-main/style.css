@@ -334,16 +334,33 @@ main {
 
 @media (max-width: 480px) {
   html {
-    font-size: 11px;
+    font-size: 15px;
+  }
+  h1 {
+    margin:2.688rem 0 2.688rem 0;
   }
 
   main {
     width: 100%;
     flex-direction: column;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .bill img,
+  .number-people img {
+    top: 0.753rem;
   }
 
   .bill-container,
   .result-container {
     width: 100%;
+  }
+
+  .total-amount {
+    padding-bottom: 3.3rem;
+  }
+
+  .reset-btn {
+    padding: 0.711rem 0;
   }
 }
